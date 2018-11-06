@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "629020065",
+    "firebase_url": "https://project-f4543.firebaseio.com",
+    "project_id": "project-f4543",
+    "storage_bucket": "project-f4543.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:629020065:android:e1ec1895621dfed0",
+        "android_client_info": {
+          "package_name": "kampanat.nakarin.thitipong.iotmedicine"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "629020065-30j185uknh4v8m977gjv66vqd36n2opj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kampanat.nakarin.thitipong.iotmedicine",
+            "certificate_hash": "fe9eca3051759e759a4731d76e22e1d0066f2c20"
+          }
+        },
+        {
+          "client_id": "629020065-arv6lundo1hfgj0gcu7e5aousgaavicc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyWzrWL9MGOAnIb5eHXoLMhH5EwP3lAKw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "629020065-arv6lundo1hfgj0gcu7e5aousgaavicc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
