@@ -1,4 +1,5 @@
 package kampanat.nakarin.thitipong.iotmedicine;
+
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.anastr.speedviewlib.SpeedView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -46,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
 
 //        Stop Alert
         stopAlert();
+
+//        Test Speed
+        SpeedView speedView = findViewById(R.id.speedViewTest);
+        speedView.speedTo(findInt(currentTempString), 4000);
+
 
     }   // Main Method
 
@@ -156,7 +163,6 @@ public class MainActivity extends AppCompatActivity {
                             stopBuzzer();
                         }
                     }
-
 
 
 
