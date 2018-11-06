@@ -1,5 +1,6 @@
 package kampanat.nakarin.thitipong.iotmedicine;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,8 +20,12 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView tempTextView, humidTextView;
     private String currentTempString = "20", currentHumidString = "30",
-            alertTempString, alerHumidString;
+            alertTempString, alertHumidString;
     private int alertTempAnInt = 30, alertHumidAnInt = 80;
+    int greenInt = 0xFF00FF00;
+    int redInt = 0xFFFF0000;
+    private boolean statusABoolean = true;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,15 +34,19 @@ public class MainActivity extends AppCompatActivity {
 
         tempTextView = findViewById(R.id.txtTemp);
         humidTextView = findViewById(R.id.txtHumid);
+        tempTextView.setTextColor(greenInt);
+        humidTextView.setTextColor(greenInt);
 
 //        RealTime Service
         realTimeService();
 
-    }   //Main Method
+
+    }   // Main Method
 
     private void realTimeService() {
+
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference= firebaseDatabase.getReference();
+        DatabaseReference databaseReference = firebaseDatabase.getReference();
 
         try {
 
@@ -53,17 +62,37 @@ public class MainActivity extends AppCompatActivity {
                     humidTextView.setText(currentHumidString);
 
 
-                    //                Check Temp
-                    if (findInt(currentTempString) > alertTempAnInt){
-                        setupAlert(true);
+                    if (statusABoolean) {
+
+                        //                Check Temp
+                        if (findInt(currentTempString) > alertTempAnInt) {
+                            setupAlert(true);
+                        }
+
+                        //                Check Humid
+                        if (findInt(currentHumidString) > alertHumidAnInt) {
+                            setupAlert(false);
+                        }
+
+                    }else {
+
+                        //                Check Temp
+                        if (findInt(currentTempString) <= alertTempAnInt) {
+                            tempTextView.setTextColor(greenInt);
+                        }
+
+                        //                Check Humid
+                        if (findInt(currentHumidString) <= alertHumidAnInt) {
+                            humidTextView.setTextColor(greenInt);
+                        }
                     }
 
-                    //                Check Humid
-                    if (findInt(currentHumidString) > alertHumidAnInt){
-                        setupAlert(false);
-                    }
 
-                }
+
+
+
+
+                }   // Data change
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -76,13 +105,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
-    }   //realTime
+    }   // realTime
 
     private int findInt(String currentString) {
 
         try {
-            return  Integer.valueOf(currentString);
+
+            return Integer.valueOf(currentString);
 
         } catch (Exception e) {
             return 0;
@@ -94,29 +123,33 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupAlert(boolean status) {
 
-        Log.d("6NovV1", "status ==> " + status);
+        statusABoolean = false;
+        Map<String, Object> objectMap = new HashMap<>();
 
-
-
-        Map<String,Object> objectMap = new HashMap<>();
-
-        if (status){
+        if (status) {
 //            Alert Temp
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
             DatabaseReference databaseReference = firebaseDatabase.getReference().child("MyTemp");
             objectMap.put("alertTemp", 1);
             databaseReference.setValue(objectMap);
+            tempTextView.setTextColor(redInt);
 
         } else {
-//        Alert Humid
+//            Alert Humid
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
             DatabaseReference databaseReference = firebaseDatabase.getReference().child("MyHumid");
             objectMap.put("alertHumid", 1);
             databaseReference.setValue(objectMap);
-        }   //if
+            humidTextView.setTextColor(redInt);
+        }   // if
+
+
+
+
+
 
 
 
     }   // setup
 
-}   //Main Class
+}   // Main Class
