@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean tempABoolean = false, humidABoolean = false;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,9 +50,9 @@ public class MainActivity extends AppCompatActivity {
 //        Stop Alert
         stopAlert();
 
-//        Test Speed
-        SpeedView speedView = findViewById(R.id.speedViewTest);
-        speedView.speedTo(findInt(currentTempString), 4000);
+////        Test Speed
+//        SpeedView speedView = findViewById(R.id.speedViewTest);
+//        speedView.speedTo(findInt(currentTempString), 4000);
 
 
     }   // Main Method
