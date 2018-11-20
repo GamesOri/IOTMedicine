@@ -44,6 +44,17 @@ public class MainActivity extends AppCompatActivity {
         tempTextView.setTextColor(greenInt);
         humidTextView.setTextColor(greenInt);
 
+
+        //ไปเปิดหน้า MainMenu
+        findViewById(R.id.btnMainMenu).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,MainMenuActivity.class);
+                        startActivity(intent);
+
+            }
+        });
+
 //        RealTime Service
         realTimeService();
 
